@@ -1,11 +1,8 @@
-import React from 'react'
-import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-
-
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function NewFeedback() {
-  console.log('✅ NewFeedback component loaded') // <— Add it here
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     title: '',
@@ -29,10 +26,13 @@ function NewFeedback() {
 
     alert('Feedback submitted!')
     setFormData({ title: '', category: 'Feature', detail: '' })
+    navigate('/')
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 600, margin: '2rem auto' }}>
+    <form onSubmit={handleSubmit}>
+      <button type="button" onClick={() => navigate(-1)}>← Go Back</button>
+
       <h2>Create New Feedback</h2>
 
       <label>Title</label>
