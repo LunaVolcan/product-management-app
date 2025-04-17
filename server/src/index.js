@@ -26,7 +26,7 @@ app.use(express.json());
 
 // Get all feedback
 async function getFeedback() {
-  const result = await client.query("SELECT * FROM feedback ORDER BY id DESC");
+  const result = await client.query("SELECT * FROM feedback ORDER BY pm_id DESC");
   return result.rows;
 }
 
