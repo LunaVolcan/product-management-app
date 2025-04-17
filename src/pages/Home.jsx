@@ -1,3 +1,5 @@
+import React from 'react'
+
 function Home() {
     console.log('🔥 Home component loaded')
     return (
