@@ -1,0 +1,3 @@
+/api/* https://product-management-app-w62f.onrender.com/:splat 200
+/\* /index.html 404
+/* /index.html 200

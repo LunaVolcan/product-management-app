@@ -7,12 +7,14 @@ import NewFeedback from './NewFeedback.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<Home />} />
-        <Route path="/new-feedback" element={<NewFeedback />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="new-feedback" element={<NewFeedback />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
 )
