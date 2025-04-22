@@ -246,7 +246,6 @@ p {
 .feedback-card:hover {
   transform: translate(-3px, -3px);
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.9);
-  background-color: #A6FAFE;
 }
 
 .category-badge {
@@ -525,7 +524,11 @@ p {
     bottom: 0;
     width: 80%;
     max-width: 400px;
-    background: #C7F9B4;
+    background-color: #C7F9B4;
+    background-image:
+      linear-gradient(to right, var(--primary) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--primary) 1px, transparent 1px);
+    background-size: 40px 40px;
     padding: 2rem;
     border-left: 3px solid var(--primary);
     animation: slideIn 0.3s ease-out;
