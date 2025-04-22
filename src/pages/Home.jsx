@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 function Home() {
   const [feedbackList, setFeedbackList] = useState([])
   const [filter, setFilter] = useState('All')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -16,44 +18,132 @@ function Home() {
   }, [])
 
   const categories = ['All', 'UI', 'UX', 'Feature', 'Enhancement', 'Bug']
-  const filtered = filter === 'All'
-    ? feedbackList
-    : feedbackList.filter(fb => fb.category === filter)
+  const filtered =
+    filter === 'All' ? feedbackList : feedbackList.filter(fb => fb.category === filter)
 
   return (
-    <div>
-      <h2>My Company</h2>
-      <p>Feedback Board</p>
-
-      <div>
-        <h3>{filtered.length} Suggestions</h3>
-        <button onClick={() => navigate('/new-feedback')}>+ Add Feedback</button>
-      </div>
-
-      <div>
-        {categories.map(cat => (
-          <button key={cat} onClick={() => setFilter(cat)}>
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {filtered.length === 0 ? (
-        <div>
-          <h4>No feedback yet.</h4>
-          <p>Be the first to submit!</p>
-          <button onClick={() => navigate('/new-feedback')}>+ Add Feedback</button>
+    <div className="container-home">
+      {/* 🟣 Mobile Header */}
+      <div className="mobile-header">
+        <div className="mobile-header-top">
+          <div>
+            <h1>My Company</h1>
+            <p>Feedback Board</p>
+          </div>
+          <button className="hamburger" onClick={() => setMobileMenuOpen(true)}>☰</button>
         </div>
-      ) : (
-        <ul>
-          {filtered.map(item => (
-            <li key={item.pm_id}>
-              <strong>{item.title}</strong> – {item.category}
-              <p>{item.detail}</p>
-            </li>
-          ))}
-        </ul>
+      </div>
+
+      {/* 🟣 Mobile Sidebar Overlay */}
+      {mobileMenuOpen && (
+        <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)}>
+          <div className="mobile-sidebar" onClick={(e) => e.stopPropagation()}>
+            <button className="close-menu" onClick={() => setMobileMenuOpen(false)}>✕</button>
+
+            {/* Mobile Dropdown Filter */}
+            <div className="dropdown">
+              <button className="dropbtn" onClick={() => setDropdownOpen(prev => !prev)}>
+                {filter || "Filter by Category"} <span className="arrow">▼</span>
+              </button>
+
+              {dropdownOpen && (
+                <div className="dropdown-content">
+                  {categories.map(cat => (
+                    <button
+                      key={cat}
+                      onClick={() => {
+                        setFilter(cat)
+                        setDropdownOpen(false)
+                        setMobileMenuOpen(false)
+                      }}
+                      className={`filter-btn ${filter === cat ? 'active' : ''}`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button
+              onClick={() => {
+                navigate('/new-feedback')
+                setMobileMenuOpen(false)
+              }}
+              className="add-feedback"
+            >
+              + Add Feedback
+            </button>
+          </div>
+        </div>
       )}
+
+      {/* 🟣 Desktop Layout */}
+      <div className="left-column">
+        <header className="header">
+          <h1>My Company</h1>
+          <p>Feedback Board</p>
+        </header>
+
+        {/* Desktop Dropdown Filter */}
+        <div className="dropdown">
+          <button className="dropbtn" onClick={() => setDropdownOpen(prev => !prev)}>
+            {filter || "Filter by Category"} <span className="arrow">▼</span>
+          </button>
+
+          {dropdownOpen && (
+            <div className="dropdown-content">
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setFilter(cat)
+                    setDropdownOpen(false)
+                  }}
+                  className={`filter-btn ${filter === cat ? 'active' : ''}`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="right-column">
+        <div className="content-section">
+          <div className="top-bar">
+            <div className="marquee">
+              <div className="marquee-content">
+                <h1>{filtered.length} Suggestions</h1>
+              </div>
+            </div>
+            <button className="add-feedback" onClick={() => navigate('/new-feedback')}>
+              + Add Feedback
+            </button>
+          </div>
+
+          {filtered.length === 0 ? (
+            <div className="empty-state">
+              <h3>There is no feedback yet.</h3>
+              <p>Got a suggestion? Found a bug? We’d love to hear from you.</p>
+              <button className="add-feedback" onClick={() => navigate('/new-feedback')}>
+                + Add Feedback
+              </button>
+            </div>
+          ) : (
+            <ul className="feedback-list">
+              {filtered.map(item => (
+                <li key={item.pm_id} className="feedback-card">
+                  <h4>{item.title}</h4>
+                  <p>{item.detail}</p>
+                  <span className="category-badge">{item.category}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

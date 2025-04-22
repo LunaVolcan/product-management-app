@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+
 function NewFeedback() {
   const navigate = useNavigate()
 
@@ -30,35 +31,47 @@ function NewFeedback() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <button type="button" onClick={() => navigate(-1)}>← Go Back</button>
+    
+    <div className="container-feedback">
+      <button type="button" onClick={() => navigate(-1)} className="go-back-button">
+        ← Go Back
+      </button>
 
-      <h2>Create New Feedback</h2>
+      <form onSubmit={handleSubmit} className="feedback-form">
+        <h2>Create New Feedback</h2>
 
-      <label>Title</label>
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-      />
+        <label htmlFor="title">Title</label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
 
-      <label>Category</label>
-      <select name="category" value={formData.category} onChange={handleChange}>
-        {['Feature', 'UI', 'UX', 'Enhancement', 'Bug'].map(opt => (
-          <option key={opt} value={opt}>{opt}</option>
-        ))}
-      </select>
+        <label htmlFor="category">Category</label>
+        <select
+          id="category"
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+        >
+          {['Feature', 'UI', 'UX', 'Enhancement', 'Bug'].map(opt => (
+            <option key={opt} value={opt}>{opt}</option>
+          ))}
+        </select>
 
-      <label>Detail</label>
-      <textarea
-        name="detail"
-        value={formData.detail}
-        onChange={handleChange}
-      />
+        <label htmlFor="detail">Detail</label>
+        <textarea
+          id="detail"
+          name="detail"
+          value={formData.detail}
+          onChange={handleChange}
+        />
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit" className="submit-button">Submit</button>
+      </form>
+    </div>
   )
 }
 
