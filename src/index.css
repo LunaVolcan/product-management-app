@@ -10,3 +10,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.form-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  font-family: var(--secondary-text);
+}
+
+.form-success {
+  color: green;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  font-family: var(--secondary-text);
+}

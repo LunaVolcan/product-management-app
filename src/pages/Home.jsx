@@ -126,11 +126,13 @@ function Home() {
 
           {filtered.length === 0 ? (
             <div className="empty-state">
+                <div className="empty-shape">
               <h3>There is no feedback yet.</h3>
               <p>Got a suggestion? Found a bug? We’d love to hear from you.</p>
-              <button className="add-feedback" onClick={() => navigate('/new-feedback')}>
+              <button className="empty-button" onClick={() => navigate('/new-feedback')}>
                 + Add Feedback
               </button>
+              </div>
             </div>
           ) : (
             <ul className="feedback-list">

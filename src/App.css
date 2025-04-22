@@ -20,6 +20,16 @@ background-image:
 background-size: 40px 40px; /* size of the grid squares */
 }
 
+.new-feedback-body {
+  background-color: #A6FAFE; /* or whatever base color you want */
+  background-image: 
+    linear-gradient(to right, var(--primary) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--primary) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+
+
 h2,h1,h3 {
   font-family: var(--text);
   font-weight: 500;
@@ -54,7 +64,7 @@ p {
   border-radius: 0;  /* Sharp corners */
   padding: 2rem;
   box-shadow: 10px 10px 0px rgba(0, 0, 0, 1);
-  transform: rotate(-2deg);
+  transform: rotate(-3deg);
   transition: all 0.3s ease;
   color: white;
   position: relative;
@@ -97,6 +107,17 @@ p {
   box-shadow: 15px 15px 0px rgba(0, 0, 0, 1);
 }
 
+.header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.header p {
+  font-family: var(--secondary-text);
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
 
 .filter-btn {
   background: var(--background);
@@ -111,6 +132,51 @@ p {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.empty-state {
+  background-color: var(--background);
+  border: 4px solid var(--primary);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 4rem auto;
+  transform: rotate(5deg);
+  font-family: var(--text);
+}
+
+.empty-state h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  font-family: var(--secondary-text);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.empty-state .add-feedback {
+  margin-top: 1rem;
+}
+
+.empty-button {
+  background: #ff0099;
+  color: white;
+  font-family: var(--text);
+  font-weight: 700;
+  border: 3px solid var(--primary);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+  border-radius: 0;
+  padding: 1rem 2rem;
+}
+
+.empty-button:hover {
+  transform: rotate(-1deg);
+  background: #FF66BA;
+  color: black;
 }
 
 /* Top Bar */
@@ -213,7 +279,7 @@ p {
 }
 
 .category-badge.ux {
-  background: #FF66BA;
+  background: #FF00F6;
   color: #000;
 }
 
@@ -223,12 +289,12 @@ p {
 }
 
 .category-badge.enhancement {
-  background: #FADF08;
+  background: #FE490F;
   color: #000;
 }
 
 .category-badge.bug {
-  background: #FF0000;
+  background: #30FE2E;
   color: #fff;
 }
 
@@ -236,7 +302,7 @@ p {
 
 /* Form Styles */
 .feedback-form {
-  background: var(--background);
+  background: #A5B4FB;
   border: 3px solid var(--primary);
   border-radius: 20px;
   padding: 2rem;
@@ -252,7 +318,6 @@ p {
 }
 
 .feedback-form input,
-.feedback-form select,
 .feedback-form textarea {
   width: 100%;
   padding: 0.75rem 1.25rem;
@@ -265,6 +330,21 @@ p {
   box-shadow: none; 
   transition: all 0.2s ease;
   transform: rotate(-1deg);
+  box-sizing: border-box;
+}
+
+.feedback-form select {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 3px solid var(--primary);
+  background: var(--background);
+  font-size: 1rem;
+  font-family: var(--text);
+  border-radius: 20px;
+  box-shadow: none; 
+  transition: all 0.2s ease;
+  transform: rotate(2deg);
   box-sizing: border-box;
 }
 
