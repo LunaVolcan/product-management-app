@@ -65,7 +65,7 @@ function Home() {
               )}
             </div>
 
-            <button
+            {/* <button
               onClick={() => {
                 navigate('/new-feedback')
                 setMobileMenuOpen(false)
@@ -73,7 +73,7 @@ function Home() {
               className="add-feedback"
             >
               + Add Feedback
-            </button>
+            </button> */}
           </div>
         </div>
       )}
@@ -110,18 +110,19 @@ function Home() {
         </div>
       </div>
 
-      <div className="right-column">
-        <div className="content-section">
-          <div className="top-bar">
-            <div className="marquee">
-              <div className="marquee-content">
-                <h1>{filtered.length} Suggestions</h1>
-              </div>
-            </div>
-            <button className="add-feedback" onClick={() => navigate('/new-feedback')}>
-              + Add Feedback
+            <div className="right-column">
+                <div className="content-section">
+                <div className="top-bar">
+        <h1>{filtered.length} Suggestions</h1>
+        <div className="top-bar-button-wrapper">
+            <button
+            className="add-feedback"
+            onClick={() => navigate('/new-feedback')}
+            >
+            + Add Feedback
             </button>
-          </div>
+        </div>
+        </div>
 
           {filtered.length === 0 ? (
             <div className="empty-state">
@@ -135,9 +136,11 @@ function Home() {
             <ul className="feedback-list">
               {filtered.map(item => (
                 <li key={item.pm_id} className="feedback-card">
-                  <h4>{item.title}</h4>
+                  <h2>{item.title}</h2>
                   <p>{item.detail}</p>
-                  <span className="category-badge">{item.category}</span>
+                  <span className={`category-badge ${item.category.toLowerCase()}`}>
+                    {item.category}
+                    </span>
                 </li>
               ))}
             </ul>
