@@ -27,7 +27,7 @@ function Home() {
       <div className="mobile-header">
         <div className="mobile-header-top">
           <div>
-            <h1>My Company</h1>
+            <h1>Mythic Labs</h1>
             <p>Feedback Board</p>
           </div>
           <button className="hamburger" onClick={() => setMobileMenuOpen(true)}>☰</button>
@@ -81,7 +81,7 @@ function Home() {
       {/* 🟣 Desktop Layout */}
       <div className="left-column">
         <header className="header">
-          <h1>My Company</h1>
+          <h1>Mythic Labs</h1>
           <p>Feedback Board</p>
         </header>
 
