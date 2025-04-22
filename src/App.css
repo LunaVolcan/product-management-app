@@ -64,17 +64,6 @@ p {
   margin: 0;
 }
 
-/* Filter Buttons */
-/* .filter-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background: var(--background);
-  border: 3px solid var(--primary);
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-} */
-
 .filter-btn {
   background: var(--background);
   border: 3px solid var(--primary);
@@ -82,11 +71,6 @@ p {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
-/* .filter-btn.active {
-  background: var(--primary);
-  color: var(--background);
-} */
 
 /* Right Column */
 .right-column {
@@ -196,7 +180,7 @@ p {
   font-size: 1rem;
   font-family: var(--text);
   border-radius: 20px;
-  box-shadow: none; /* flat by default */
+  box-shadow: none; 
   transition: all 0.2s ease;
   transform: rotate(-1deg);
   box-sizing: border-box;
@@ -212,7 +196,7 @@ p {
   transform: rotate(0deg) translate(-2px, -2px);
   box-shadow: var(--shadow);
   outline: none;
-  background-color: #f5f5f5; /* optional soft pop */
+  background-color: #f5f5f5; 
 }
 
 /* Mobile Header Elements - Hidden by default */
@@ -240,8 +224,6 @@ p {
 }
 
 
-
-/* Mobile Styles */
 @media (max-width: 768px) {
   .container-home {
     grid-template-columns: 1fr;
@@ -374,7 +356,7 @@ p {
 }
 
 .dropbtn:hover {
-  background-color: #FF66BA; /* lime-200 feel */
+  background-color: #FF66BA; 
   transform: translate(2px, 2px);
   box-shadow: none;
 }

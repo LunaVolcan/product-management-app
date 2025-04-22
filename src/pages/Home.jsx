@@ -34,7 +34,7 @@ function Home() {
         </div>
       </div>
 
-      {/* 🟣 Mobile Sidebar Overlay */}
+      {/* Mobile Sidebar Overlay */}
       {mobileMenuOpen && (
         <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)}>
           <div className="mobile-sidebar" onClick={(e) => e.stopPropagation()}>
