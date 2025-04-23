@@ -529,18 +529,19 @@ p {
   
   .close-menu {
     background:#fff !important;
-    border: 3px solid var(--primary) !important;
-    border-radius: 50%;
     width: 40px;
     height: 40px;
-    font-size: 1.5rem;
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    font-size: 1.25rem;
     font-weight: bold;
     color: var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     box-shadow: var(--shadow);
+    transform: rotate(-2deg);
+    cursor: pointer;
     transition: transform 0.4s ease;
   }
   
@@ -664,6 +665,7 @@ p {
   overflow: visible;
   z-index: 101;
   margin-top: 2rem;
+  color: var(--primary);
 }
 
 
