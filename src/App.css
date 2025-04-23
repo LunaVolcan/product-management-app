@@ -666,7 +666,7 @@ p {
   overflow: visible;
   z-index: 101;
   margin-top: 2rem;
-  color: var(--primary);
+  color: var(--primary) !important;
 }
 
 
@@ -679,6 +679,7 @@ body {
   width: 100%;
   max-width: 18rem;
   margin-bottom: 1.5rem;
+  color: var(--primary) !important;
   
 }
 
@@ -701,6 +702,7 @@ body {
   transition: all 0.2s ease;
   transform: translate(2px, 2px);
   box-shadow: none;
+  color: var(--primary) !important;
 }
 
 .dropbtn:hover {
