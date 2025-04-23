@@ -6,20 +6,33 @@ function Home() {
   const [filter, setFilter] = useState('All')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const fetchFeedback = async () => {
-      const res = await fetch('https://product-management-app-w62f.onrender.com/get-feedback')
-      const data = await res.json()
-      setFeedbackList(data)
-    }
-    fetchFeedback()
-  }, [])
 
   const categories = ['All', 'UI', 'UX', 'Feature', 'Enhancement', 'Bug']
   const filtered =
     filter === 'All' ? feedbackList : feedbackList.filter(fb => fb.category === filter)
+
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const res = await fetch('https://product-management-app-w62f.onrender.com/get-feedback')
+        const data = await res.json()
+        setFeedbackList(data)
+      } catch (err) {
+        console.error('Error fetching feedback:', err)
+      }
+    }
+    fetchFeedback()
+  }, [])
+
+  const handleCloseMenu = () => {
+    setIsClosing(true)
+    setTimeout(() => {
+      setMobileMenuOpen(false)
+      setIsClosing(false)
+    }, 400)
+  }
 
   return (
     <div className="container-home">
@@ -36,16 +49,14 @@ function Home() {
 
       {/* Mobile Sidebar Overlay */}
       {mobileMenuOpen && (
-        <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)}>
-          <div className="mobile-sidebar" onClick={(e) => e.stopPropagation()}>
-            <button className="close-menu" onClick={() => setMobileMenuOpen(false)}>✕</button>
+        <div className="mobile-overlay" onClick={handleCloseMenu}>
+          <div className={`mobile-sidebar ${isClosing ? 'closing' : ''}`} onClick={(e) => e.stopPropagation()}>
+            <button className="close-menu" onClick={handleCloseMenu}>✕</button>
 
-            {/* Mobile Dropdown Filter */}
             <div className="dropdown">
               <button className="dropbtn" onClick={() => setDropdownOpen(prev => !prev)}>
                 {filter || "Filter by Category"} <span className="arrow">▼</span>
               </button>
-
               {dropdownOpen && (
                 <div className="dropdown-content">
                   {categories.map(cat => (
@@ -54,7 +65,7 @@ function Home() {
                       onClick={() => {
                         setFilter(cat)
                         setDropdownOpen(false)
-                        setMobileMenuOpen(false)
+                        handleCloseMenu()
                       }}
                       className={`filter-btn ${filter === cat ? 'active' : ''}`}
                     >
@@ -64,16 +75,6 @@ function Home() {
                 </div>
               )}
             </div>
-
-            {/* <button
-              onClick={() => {
-                navigate('/new-feedback')
-                setMobileMenuOpen(false)
-              }}
-              className="add-feedback"
-            >
-              + Add Feedback
-            </button> */}
           </div>
         </div>
       )}
@@ -85,12 +86,10 @@ function Home() {
           <p>Feedback Board</p>
         </header>
 
-        {/* Desktop Dropdown Filter */}
         <div className="dropdown">
           <button className="dropbtn" onClick={() => setDropdownOpen(prev => !prev)}>
             {filter || "Filter by Category"} <span className="arrow">▼</span>
           </button>
-
           {dropdownOpen && (
             <div className="dropdown-content">
               {categories.map(cat => (
@@ -110,28 +109,28 @@ function Home() {
         </div>
       </div>
 
-            <div className="right-column">
-                <div className="content-section">
-                <div className="top-bar">
-        <h1>{filtered.length} Suggestions</h1>
-        <div className="top-bar-button-wrapper">
-            <button
-            className="add-feedback"
-            onClick={() => navigate('/new-feedback')}
-            >
-            + Add Feedback
-            </button>
-        </div>
-        </div>
+      <div className="right-column">
+        <div className="content-section">
+          <div className="top-bar">
+            <h1>{filtered.length} Suggestions</h1>
+            <div className="top-bar-button-wrapper">
+              <button
+                className="add-feedback"
+                onClick={() => navigate('/new-feedback')}
+              >
+                + Add Feedback
+              </button>
+            </div>
+          </div>
 
           {filtered.length === 0 ? (
             <div className="empty-state">
-                <div className="empty-shape">
-              <h3>There is no feedback yet.</h3>
-              <p>Got a suggestion? Found a bug? We’d love to hear from you.</p>
-              <button className="empty-button" onClick={() => navigate('/new-feedback')}>
-                + Add Feedback
-              </button>
+              <div className="empty-shape">
+                <h3>There is no feedback yet.</h3>
+                <p>Got a suggestion? Found a bug? We’d love to hear from you.</p>
+                <button className="empty-button" onClick={() => navigate('/new-feedback')}>
+                  + Add Feedback
+                </button>
               </div>
             </div>
           ) : (
@@ -142,7 +141,7 @@ function Home() {
                   <p>{item.detail}</p>
                   <span className={`category-badge ${item.category.toLowerCase()}`}>
                     {item.category}
-                    </span>
+                  </span>
                 </li>
               ))}
             </ul>

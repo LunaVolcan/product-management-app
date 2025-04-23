@@ -505,22 +505,66 @@ p {
   }
 
   .hamburger {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 50px;
-  height: 50px;
-  background: var(--background);
-  border: 3px solid var(--primary);
-  border-radius: 50%; /* makes it a circle */
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow);
-  transform: rotate(-2deg);
-  cursor: pointer;
-  transition: all 0.2s ease;
+    height: 40px;
+    background: var(--background);
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    box-shadow: var(--shadow);
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    margin-right: 1.5rem;
+  }
+  
+  .hamburger:hover {
+    animation: vortexSpin 0.6s ease-in-out;
+    box-shadow: none;
+  }
+  
+  .close-menu {
+    background:#fff !important;
+    border: 3px solid var(--primary) !important;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform 0.4s ease;
+  }
+  
+  .close-menu:hover {
+    animation: closeVortex 0.6s ease-in-out;
+    box-shadow: none;
+  }
+  
+  @keyframes closeVortex {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+
+    100% {
+      transform: rotate(-360deg) scale(1);
+    }
+  }
+
+  @keyframes vortexSpin {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
   }
 
   .top-bar {
@@ -707,3 +751,32 @@ body {
   }
 }
 
+@keyframes slideSkewIn {
+  0% {
+    transform: translateX(100%) skewX(-10deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) skewX(0deg);
+    opacity: 1;
+  }
+}
+
+.mobile-sidebar {
+  animation: slideSkewIn 0.4s ease-out;
+}
+
+@keyframes sidebarExit {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.mobile-sidebar.closing {
+  animation: sidebarExit 0.4s ease-in forwards;
+}
