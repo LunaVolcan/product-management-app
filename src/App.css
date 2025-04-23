@@ -531,7 +531,7 @@ p {
     background:#fff !important;
     width: 40px;
     height: 40px;
-    border: 3px solid var(--primary);
+    border: 3px solid var(--primary) !important;
     border-radius: 50%;
     font-size: 1.25rem;
     font-weight: bold;
