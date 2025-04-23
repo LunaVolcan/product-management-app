@@ -505,20 +505,21 @@ p {
   }
 
   .hamburger {
+    width: 50px;
+    height: 50px;
+    background: var(--background);
+    border: 3px solid var(--primary);
+    border-radius: 50%; 
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 40px;
-    background: var(--background);
-    border: 3px solid var(--primary);
-    border-radius: 50%;
     box-shadow: var(--shadow);
-    font-size: 1.5rem;
-    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.4s ease;
-    margin-right: 1.5rem;
+    padding: 0;
+    line-height: 1; 
   }
   
   .hamburger:hover {
@@ -639,16 +640,33 @@ p {
   .feedback-list {
     grid-template-columns: 1fr;
   }
+
+  .hamburger,
+  .close-menu {
+    color: var(--primary);
+    font-size: 2rem;
+  }
+
+  .dropdown-content button {
+    font-size: 1rem;
+    color: var(--primary);
+  }
+
+  select,
+  option {
+    color: var(--primary);
+  }
+
 }
 
-/* ✅ Prevent dropdown issues on small screens */
+
 .dropdown {
   overflow: visible;
   z-index: 101;
   margin-top: 2rem;
 }
 
-/* ✅ Add safe side padding for mobile layout */
+
 body {
   padding: 0 1rem;
 }
@@ -763,7 +781,8 @@ body {
 }
 
 .mobile-sidebar {
-  animation: slideSkewIn 0.4s ease-out;
+  animation: slideSkewIn 0.5s ease-out;
+  
 }
 
 @keyframes sidebarExit {
@@ -778,5 +797,5 @@ body {
 }
 
 .mobile-sidebar.closing {
-  animation: sidebarExit 0.4s ease-in forwards;
+  animation: sidebarExit .6s ease-in forwards;
 }
